@@ -14,7 +14,6 @@ import connectDB from "./middleware/DBconnect.js";
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
@@ -27,6 +26,9 @@ app.use(express.json({ limit: "50mb" }));
 // app.use(express.static("public"));
 
 connectDB();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", userRoutes);
 app.use("/sessions", SessionRoutes);
